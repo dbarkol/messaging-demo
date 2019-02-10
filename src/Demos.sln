@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fleet Demo", "Fleet Demo", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBusDemos", "ServiceBusDemos\ServiceBusDemos.csproj", "{77984A7F-20EC-4AF0-B77B-4CCE90FD4E98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetUpdates", "FleetUpdates\FleetUpdates.csproj", "{9EFF90BF-2E97-4C0F-A7B7-BA1FE825FAE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FleetUpdates", "FleetUpdates\FleetUpdates.csproj", "{9EFF90BF-2E97-4C0F-A7B7-BA1FE825FAE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

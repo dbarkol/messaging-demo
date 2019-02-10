@@ -6,6 +6,7 @@
   <ItemGroup>
     <PackageReference Include="Confluent.Kafka" Version="0.11.6" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="2.8.0-preview" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="3.0.2" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
     <PackageReference Include="Twilio" Version="5.26.0" />
   </ItemGroup>
