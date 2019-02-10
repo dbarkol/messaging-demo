@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service Bus Demos", "Servic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fleet Updates Demo", "Fleet Updates Demo", "{D7AA6F05-7F19-4481-95E0-780BE927E712}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBusDemos", "..\ServiceBusDemos\ServiceBusDemos.csproj", "{B6E9E413-C49D-449A-A1C6-DDBF2D28517E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBusDemos", "ServiceBusDemos\ServiceBusDemos.csproj", "{77984A7F-20EC-4AF0-B77B-4CCE90FD4E98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,16 +17,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B6E9E413-C49D-449A-A1C6-DDBF2D28517E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6E9E413-C49D-449A-A1C6-DDBF2D28517E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6E9E413-C49D-449A-A1C6-DDBF2D28517E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6E9E413-C49D-449A-A1C6-DDBF2D28517E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77984A7F-20EC-4AF0-B77B-4CCE90FD4E98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77984A7F-20EC-4AF0-B77B-4CCE90FD4E98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77984A7F-20EC-4AF0-B77B-4CCE90FD4E98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77984A7F-20EC-4AF0-B77B-4CCE90FD4E98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B6E9E413-C49D-449A-A1C6-DDBF2D28517E} = {C58919F1-E4F8-4BC4-9E4F-FE3E9800C19A}
+		{77984A7F-20EC-4AF0-B77B-4CCE90FD4E98} = {C58919F1-E4F8-4BC4-9E4F-FE3E9800C19A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D3C18B7-6A2A-4E9A-9812-55D815E0D4B3}
