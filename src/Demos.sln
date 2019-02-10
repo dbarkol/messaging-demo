@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Survey", "Survey", "{1500DEDA-F250-4639-AC29-C9B671DBEF9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service Bus Demos", "Service Bus Demos", "{C58919F1-E4F8-4BC4-9E4F-FE3E9800C19A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fleet Updates Demo", "Fleet Updates Demo", "{D7AA6F05-7F19-4481-95E0-780BE927E712}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBusDemos", "..\ServiceBusDemos\ServiceBusDemos.csproj", "{B6E9E413-C49D-449A-A1C6-DDBF2D28517E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6E9E413-C49D-449A-A1C6-DDBF2D28517E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E9E413-C49D-449A-A1C6-DDBF2D28517E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E9E413-C49D-449A-A1C6-DDBF2D28517E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E9E413-C49D-449A-A1C6-DDBF2D28517E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B6E9E413-C49D-449A-A1C6-DDBF2D28517E} = {C58919F1-E4F8-4BC4-9E4F-FE3E9800C19A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D3C18B7-6A2A-4E9A-9812-55D815E0D4B3}
+	EndGlobalSection
+EndGlobal
