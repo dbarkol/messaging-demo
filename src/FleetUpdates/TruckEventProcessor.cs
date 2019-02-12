@@ -37,19 +37,28 @@ namespace FleetUpdates
                 {
                     log.LogInformation("TruckEventProcessor triggered.");
 
-                    // Retrieve the update
+                    // Retrieve the truck update
                     var messageBody = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
                     var truckUpdate = JsonConvert.DeserializeObject<TruckUpdate>(messageBody);
 
+                    // Obtain an instance of an Http client
                     if (Client == null) Client = InitializeHttpClient();                    
 
-                    // TODO: Add logic to determine topic and subject
+                    // Set the event type and subject
                     var eventType = "Fleet.TruckUpdate";
                     var subject = "testSubject";
-                    var topicName = "";
 
-                    var source = CloudEventHelper.FormatSourceForDomainEndpoint(SubscriptionId, ResourceGroupName,
-                        DomainName, topicName, subject);
+                    // Determine the topic based off of the score                    
+                    string topicName = "";
+                    if (truckUpdate.Score > 90)
+                        topicName = "CompanyA";
+                    else if (truckUpdate.Score > 70)
+                        topicName = "CompanyB";
+                    else if (truckUpdate.Score > 50)
+                        topicName = "CompanyC";
+
+                    var source = CloudEventHelper.FormatSourceForDomainEndpoint(SubscriptionId, 
+                        ResourceGroupName, DomainName, topicName, subject);
 
                     await CloudEventHelper.SendEvent(Client, truckUpdate, eventType, source);
                 }
