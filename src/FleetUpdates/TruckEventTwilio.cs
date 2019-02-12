@@ -9,12 +9,18 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Confluent.Kafka;
+using Confluent.Kafka.Serialization;
 using Twilio.TwiML;
+using FleetUpdates.Models;
 
 namespace FleetUpdates
 {
     public static class TruckEventTwilio
     {
+        private static Producer<long, string> KafkaProducer = null;
+        private static string KafkaTopic = Environment.GetEnvironmentVariable("EventHubName");
+
         /// <summary>
         /// This function is invoked by an HTTP request from Twilio. It's
         /// purpose is to pass along the contents to an Event Hub. 
@@ -22,6 +28,7 @@ namespace FleetUpdates
         [FunctionName("TruckEventTwilio")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+            ExecutionContext context,
             ILogger log)
         {
             log.LogInformation("TruckEventTwilio invoked");
@@ -35,10 +42,23 @@ namespace FleetUpdates
 
             // Extract the message body from the payload and
             // calculate the score.
-            var body = GetMessageBody(requestBody);
-            var score = Score.GetScore(body);
+            var update = GetMessageBody(requestBody);
+            var score = Score.GetScore(update);
+            var truckUpdate = new TruckUpdate
+            {
+                Id = Guid.NewGuid(),
+                Score = score,
+                Update = update
+            };
 
-            // TODO: Send to Kafka endpoint
+            // Get an instance of the Kafka producer
+            if (KafkaProducer == null) KafkaProducer = KafkaHelper.GetKafkaProducer(context, log);
+
+            // Send to Kafka endpoint
+            var msg = JsonConvert.SerializeObject(truckUpdate);
+            var deliveryReport = await KafkaProducer.ProduceAsync(KafkaTopic,
+                DateTime.UtcNow.Ticks,
+                msg);
 
             // Format the response 
             var response = new MessagingResponse().Message($"Thank you. Your score: {score}");

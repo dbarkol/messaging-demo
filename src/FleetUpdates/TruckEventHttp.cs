@@ -49,7 +49,7 @@ namespace FleetUpdates
             };
 
             // Retrieve an instance of the Kafka producer
-            var producer = GetKafkaProducer(context, log);
+            if (KafkaProducer == null) KafkaProducer = KafkaHelper.GetKafkaProducer(context, log);
 
             // Send to Kafka endpoint
             var msg = JsonConvert.SerializeObject(truckUpdate);
@@ -58,38 +58,6 @@ namespace FleetUpdates
                                             msg);
 
             return (ActionResult)new OkObjectResult($"Your score: {score}");
-        }
-
-        private static Producer<long, string> GetKafkaProducer(ExecutionContext context, ILogger log)
-        {
-            if (KafkaProducer != null) return KafkaProducer;
-
-            var brokerList = Environment.GetEnvironmentVariable("EventHubFqdn");
-            var connStr = Environment.GetEnvironmentVariable("EventHubConnectionString");
-            var caCertFileName = Environment.GetEnvironmentVariable("CaCertFileName");
-            var cacertlocation = Path.Combine(context.FunctionAppDirectory, caCertFileName);
-
-            // Local testing
-            if (Environment.GetEnvironmentVariable("IsLocal") == "1")
-            {
-                cacertlocation = ".\\cacert.pem";
-            }
-
-            var config = new Dictionary<string, object>
-            {
-                {"bootstrap.servers", brokerList},
-                {"security.protocol", "SASL_SSL"},
-                {"sasl.mechanism", "PLAIN"},
-                {"sasl.username", "$ConnectionString"},
-                {"sasl.password", connStr},
-                {"ssl.ca.location", cacertlocation}
-            };
-
-            KafkaProducer = new Producer<long, string>(config, 
-                new LongSerializer(), 
-                new StringSerializer(Encoding.UTF8));
-
-            return KafkaProducer;
         }
     }
 }
