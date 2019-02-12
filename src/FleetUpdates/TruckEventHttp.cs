@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net.Mime;
-using System.Text;
 using System.Threading.Tasks;
 using Confluent.Kafka;
-using Confluent.Kafka.Serialization;
 using FleetUpdates.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -20,7 +16,7 @@ namespace FleetUpdates
     public static class TruckEventHttp
     {
         private static Producer<long, string> KafkaProducer = null;
-        private static string KafkaTopic = Environment.GetEnvironmentVariable("EventHubName");
+        private static string KafkaTopic = Environment.GetEnvironmentVariable("EventHubName");        
 
         /// <summary>
         /// This function is invoked by an HTTP request. It's purpose is to pass along

@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using FleetUpdates.Models;
+using FleetUpdates.Utils;
 using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
@@ -13,6 +17,13 @@ namespace FleetUpdates
 {
     public static class TruckEventProcessor
     {
+        private static HttpClient Client = null;
+        private static string DomainAccessKey = Environment.GetEnvironmentVariable("DomainAccessKey");
+        private static string DomainEndpoint = Environment.GetEnvironmentVariable("DomainEndpoint");
+        private static string SubscriptionId = Environment.GetEnvironmentVariable("SubscriptionId");
+        private static string DomainName = Environment.GetEnvironmentVariable("DomainName");
+        private static string ResourceGroupName = Environment.GetEnvironmentVariable("ResourceGroupName");
+
         [FunctionName("TruckEventProcessor")]
         public static async Task Run(
             [EventHubTrigger("%EventHubName%", Connection = "EventHubConnectionString")] EventData[] events, 
@@ -20,19 +31,27 @@ namespace FleetUpdates
         {
             var exceptions = new List<Exception>();
 
-            foreach (EventData eventData in events)
+            foreach (var eventData in events)
             {
                 try
                 {
+                    log.LogInformation("TruckEventProcessor triggered.");
+
                     // Retrieve the update
                     var messageBody = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
                     var truckUpdate = JsonConvert.DeserializeObject<TruckUpdate>(messageBody);
 
-                    // TODO: Publish to Event Grid Domain
+                    if (Client == null) Client = InitializeHttpClient();                    
 
-                    // Replace these two lines with your processing logic.
-                    //log.LogInformation($"C# Event Hub trigger function processed a message: {messageBody}");
-                    await Task.Yield();
+                    // TODO: Add logic to determine topic and subject
+                    var eventType = "Fleet.TruckUpdate";
+                    var subject = "testSubject";
+                    var topicName = "";
+
+                    var source = CloudEventHelper.FormatSourceForDomainEndpoint(SubscriptionId, ResourceGroupName,
+                        DomainName, topicName, subject);
+
+                    await CloudEventHelper.SendEvent(Client, truckUpdate, eventType, source);
                 }
                 catch (Exception e)
                 {
@@ -49,5 +68,15 @@ namespace FleetUpdates
             if (exceptions.Count == 1)
                 throw exceptions.Single();
         }
+
+        private static HttpClient InitializeHttpClient()
+        {
+            HttpClient client = new HttpClient { BaseAddress = new Uri(DomainEndpoint) };
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("aeg-sas-key", DomainAccessKey);
+            return client;
+        }
+
     }
 }
