@@ -51,11 +51,11 @@ namespace FleetUpdates
                     // Determine the topic based off of the score                    
                     string topicName = "";
                     if (truckUpdate.Score > 90)
-                        topicName = "CompanyA";
+                        topicName = "companya";
                     else if (truckUpdate.Score > 70)
-                        topicName = "CompanyB";
+                        topicName = "companyb";
                     else if (truckUpdate.Score > 50)
-                        topicName = "CompanyC";
+                        topicName = "companyc";
 
                     var source = CloudEventHelper.FormatSourceForDomainEndpoint(SubscriptionId, 
                         ResourceGroupName, DomainName, topicName, subject);
