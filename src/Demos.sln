@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBusDemos", "ServiceB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FleetUpdates", "FleetUpdates\FleetUpdates.csproj", "{9EFF90BF-2E97-4C0F-A7B7-BA1FE825FAE3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeWantTheFunc", "WeWantTheFunc\WeWantTheFunc.csproj", "{686F746F-D521-4E91-BCE5-1A9BB825AFB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9EFF90BF-2E97-4C0F-A7B7-BA1FE825FAE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EFF90BF-2E97-4C0F-A7B7-BA1FE825FAE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EFF90BF-2E97-4C0F-A7B7-BA1FE825FAE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{686F746F-D521-4E91-BCE5-1A9BB825AFB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{686F746F-D521-4E91-BCE5-1A9BB825AFB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{686F746F-D521-4E91-BCE5-1A9BB825AFB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{686F746F-D521-4E91-BCE5-1A9BB825AFB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{77984A7F-20EC-4AF0-B77B-4CCE90FD4E98} = {C58919F1-E4F8-4BC4-9E4F-FE3E9800C19A}
 		{9EFF90BF-2E97-4C0F-A7B7-BA1FE825FAE3} = {D7AA6F05-7F19-4481-95E0-780BE927E712}
+		{686F746F-D521-4E91-BCE5-1A9BB825AFB7} = {1500DEDA-F250-4639-AC29-C9B671DBEF9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D3C18B7-6A2A-4E9A-9812-55D815E0D4B3}
