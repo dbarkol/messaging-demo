@@ -93,7 +93,7 @@ namespace Surveys.Web.Controllers
                     JsonConvert.DeserializeObject<List<GridEvent<Dictionary<string, string>>>>(jsonContent)
                         .First();
 
-                var feedback = gridEvent.Data["Message"];
+                var feedback = gridEvent.Data["message"];
                 await this._hubContext.Clients.All.SendAsync(
                     "gridupdate",
                     feedback); 
